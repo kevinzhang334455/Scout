@@ -1,0 +1,65 @@
+
+How to build Scout?
+
+Quick install for Linux users
+-----------------------------
+
+Just run ./install.sh. It expects a boost library in the parent directory and 
+it will check out and build llvm and clang there. Otherwise use the detailed instructions below.
+Alternatively you can use install.sh as a reference and copy the lines step by step to your terminal. 
+
+Prerequisites
+-------------
+
+1. Get Qt (tested version: 4.5, 4.6.1)
+2. Get boost (see www.boost.org). Version 1.41 or later required.
+3. Get llvm and clang (see llvm.org and clang.llvm.org) version 3.4. 
+4. Optionally apply the patch ./clangAddons/patch/Scout.patch. 
+
+On Linux:
+cd $(LLVM_DIR)/tools/clang
+patch -p0 < $(SCOUT_DIR)/clangAddons/patch/Scout.patch 
+
+On Windows you can use the patch tool provided by TortoiseSVN.
+
+You don't need to apply the patch. However it provides nice features:
+
+4.1: the command-line option: -rewrite-style=[ANSI|KR]
+The KR style is used by default and also without the patch. 
+
+4.2: Comments are output with proper indentation.
+
+4.3. Support of parsing pragma arguments
+
+
+
+5. Build clang and llvm.
+
+!!!!!!!!!!!!!!!
+!!!IMPORTANT!!!
+!!!!!!!!!!!!!!!
+
+Linux Users have to call 
+
+make REQUIRES_RTTI = 1 
+
+
+6. Run configure.sh (configure.bat on Windows) from the Scout directory:
+
+configure.[sh|bat] [-boost_dir=PATH] [-llvm_dir=PATH] [-llvm_lib_dir=PATH]
+
+All PATHs may be absolute or relative.
+
+
+7. Build the clangAddons:
+
+cd $(SCOUT_DIR)/clangAddons
+make  (on Linux)
+cmake (on MAC and Windows)
+
+
+8. Use $(SCOUT_DIR)/Scout.pro to build Scout using qt.
+
+Ready.
+
+

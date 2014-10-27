@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <version>1</version>
+    <last_loaded_file>C:/Users/Olaf Krzikalla/Projekte/SVN/Scout_Show/tests/cpp_test.cpp</last_loaded_file>
+    <commandline></commandline>
+    <prologtextfile></prologtextfile>
+    <include_paths>
+        <count>4</count>
+        <item>C:/cygwin/lib/gcc/i686-pc-cygwin/4.3.2/include/c++/i686-pc-cygwin</item>
+        <item>C:/cygwin/lib/gcc/i686-pc-cygwin/4.3.2/include/c++</item>
+        <item>C:/cygwin/lib/gcc/i686-pc-cygwin/4.3.2/include</item>
+        <item>C:/cygwin/usr/include</item>
+    </include_paths>
+    <preprocessed_files>
+        <count>0</count>
+    </preprocessed_files>
+</project>

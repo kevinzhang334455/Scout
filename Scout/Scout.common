@@ -1,0 +1,115 @@
+
+include(Scout.config)
+
+CONFIG += debug_and_release
+
+CONFIG(debug, debug|release) {
+  CONFIG_SUB_DIR = Debug
+  CONFIG_NAME = debug
+} else {
+  CONFIG_SUB_DIR = Release
+  CONFIG_NAME = release
+  DEFINES += QT_NODLL
+}
+
+win32 {
+  CONFIG -= flat
+  CLANGADDON_LIB_DIR = $$PWD/clangAddons/build/$$CONFIG_SUB_DIR
+	LLVM_LIB_DIR_CFG = $$LLVM_LIB_DIR/lib/$$CONFIG_SUB_DIR
+}
+
+unix|macx {
+
+  clangAddons.commands = cd clangAddons; make $$CONFIG_NAME; cd ..
+  QMAKE_EXTRA_TARGETS += clangAddons
+  PRE_TARGETDEPS = clangAddons
+
+  CLANGADDON_LIB_DIR = $$PWD/clangAddons/$$CONFIG_SUB_DIR+Asserts/lib
+	LLVM_LIB_DIR_CFG = $$LLVM_LIB_DIR/$$CONFIG_SUB_DIR+Asserts/lib
+}
+
+
+DESTDIR = ./$$CONFIG_SUB_DIR
+
+INCLUDEPATH += clangAddons/include \
+    $$BOOST_DIR \
+    ./src \
+    .
+
+#platform independent programming at its best: the QT MSVC-addin 
+#guys never fixed the space-in-path bug:
+
+win32 {
+  LIBS += \
+    -l"$$CLANGADDON_LIB_DIR/scoutClangInterface" \
+    -l"$$CLANGADDON_LIB_DIR/scoutClangVectorizing" \
+    -l"$$CLANGADDON_LIB_DIR/scoutClangASTProcessing" \
+    -l"$$LLVM_LIB_DIR_CFG/clangFrontend" \
+    -l"$$LLVM_LIB_DIR_CFG/clangDriver" \
+    -l"$$LLVM_LIB_DIR_CFG/clangStaticAnalyzerCore" \
+    -l"$$LLVM_LIB_DIR_CFG/clangIndex" \
+    -l"$$LLVM_LIB_DIR_CFG/clangSema" \
+    -l"$$LLVM_LIB_DIR_CFG/clangAnalysis" \
+    -l"$$LLVM_LIB_DIR_CFG/clangSerialization" \
+    -l"$$LLVM_LIB_DIR_CFG/clangAST" \
+    -l"$$LLVM_LIB_DIR_CFG/clangRewriteCore" \
+    -l"$$LLVM_LIB_DIR_CFG/clangEdit" \
+    -l"$$LLVM_LIB_DIR_CFG/clangParse" \
+    -l"$$LLVM_LIB_DIR_CFG/clangLex" \
+    -l"$$LLVM_LIB_DIR_CFG/clangBasic" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMCore" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMOption" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMBitReader" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMbitWriter" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMMC" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMSupport" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMScalarOpts" \
+    -l"$$LLVM_LIB_DIR_CFG/LLVMTransformUtils"
+}
+
+unix|macx {
+  LIBS += \
+    $$quote(-L$$CLANGADDON_LIB_DIR) \
+    $$quote(-L$$LLVM_LIB_DIR_CFG) \
+    -lscoutClangInterface \
+    -lscoutClangVectorizing \
+    -lscoutClangASTProcessing \
+    -lscoutClangInterface \
+    -lscoutClangVectorizing \
+    -lscoutClangASTProcessing \
+    -lclangFrontend \
+    -lclangDriver \
+    -lclangSerialization \
+    -lclangCodeGen \
+    -lclangParse \
+    -lclangSema \
+    -lclangStaticAnalyzerFrontend \
+    -lclangStaticAnalyzerCheckers \
+    -lclangStaticAnalyzerCore \
+    -lclangAnalysis \
+    -lclangARCMigrate \
+    -lclangRewriteFrontend \
+    -lclangRewriteCore \
+    -lclangEdit \
+    -lclangAST \
+    -lclangLex \
+    -lclangBasic \
+    -lLLVMOption \
+    -lLLVMX86Desc \
+    -lLLVMX86AsmPrinter \
+    -lLLVMX86AsmParser \
+    -lLLVMX86Info \
+    -lLLVMX86Utils \
+    -lLLVMBitReader \
+    -lLLVMBitWriter \
+    -lLLVMMCParser \
+    -lLLVMMC \
+    -lLLVMScalarOpts \
+    -lLLVMTransformUtils \
+    -lLLVMCore \
+    -lLLVMSupport 
+}
+
+
+DEPENDPATH += .
+OBJECTS_DIR += $$CONFIG_SUB_DIR

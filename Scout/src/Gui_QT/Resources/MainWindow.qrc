@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/hicfd_main">
+        <file alias="Add">Pictures/Add24.png</file>
+        <file alias="Open">Pictures/Open24.png</file>
+        <file alias="Play">Pictures/Play24.png</file>
+        <file alias="Remove">Pictures/Remove24.png</file>
+        <file alias="Stop">Pictures/Stop24.png</file>
+        <file>Pictures/Logo50.png</file>
+        <file>Pictures/Logo24.png</file>
+    </qresource>
+</RCC>

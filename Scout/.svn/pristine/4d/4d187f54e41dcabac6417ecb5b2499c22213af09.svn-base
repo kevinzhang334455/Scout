@@ -1,0 +1,518 @@
+Index: include/clang/AST/PrettyPrinter.h
+===================================================================
+--- include/clang/AST/PrettyPrinter.h	(revision 201159)
++++ include/clang/AST/PrettyPrinter.h	(working copy)
+@@ -27,6 +27,10 @@
+ class PrinterHelper {
+ public:
+   virtual ~PrinterHelper();
++  virtual bool handledStmt(Stmt* E, raw_ostream& OS, unsigned) {
++    return handledStmt(E, OS);
++  }
++
+   virtual bool handledStmt(Stmt* E, raw_ostream& OS) = 0;
+ };
+ 
+Index: include/clang/Basic/LangOptions.def
+===================================================================
+--- include/clang/Basic/LangOptions.def	(revision 201159)
++++ include/clang/Basic/LangOptions.def	(working copy)
+@@ -180,6 +180,11 @@
+ 
+ BENIGN_LANGOPT(RetainCommentsFromSystemHeaders, 1, 0, "retain documentation comments from system headers in the AST")
+ 
++ENUM_LANGOPT(IndentStyle, IndentStyleMode, 1, KRStyle, 
++             "style of formatted rewrite output")
++VALUE_LANGOPT(Indentation, 8, 2, 
++              "number of spaces for rewrite indentation")
++
+ #undef LANGOPT
+ #undef VALUE_LANGOPT
+ #undef BENIGN_LANGOPT
+Index: include/clang/Basic/LangOptions.h
+===================================================================
+--- include/clang/Basic/LangOptions.h	(revision 201159)
++++ include/clang/Basic/LangOptions.h	(working copy)
+@@ -66,6 +66,12 @@
+     SOB_Trapping    // -ftrapv
+   };
+ 
++  /// \brief Indent style (see wikipedia:"Indent style" for details).
++  enum IndentStyleMode {
++    KRStyle,
++    /*same as Allman style:*/ ANSIStyle
++  };
++
+   enum AddrSpaceMapMangling { ASMM_Target, ASMM_On, ASMM_Off };
+ 
+ public:
+Index: include/clang/Driver/CC1Options.td
+===================================================================
+--- include/clang/Driver/CC1Options.td	(revision 201159)
++++ include/clang/Driver/CC1Options.td	(working copy)
+@@ -388,6 +388,16 @@
+ 
+ def foverride_record_layout_EQ : Joined<["-"], "foverride-record-layout=">,
+   HelpText<"Override record layouts with those in the given file">;
++
++// Rewriter Output Options (placed in LangOptions.h, see there for reasons)
++def rewrite_indent : Separate<["-"], "rewrite-indent">,
++  HelpText<"Indentation of formatted rewrite output, default 2">;
++def rewrite_indent_EQ : Joined<["-"], "rewrite-indent=">,
++  Alias<rewrite_indent>;
++def rewrite_style : Separate<["-"], "rewrite-style">,
++  HelpText<"Style of formatted rewrite output: KR|ANSI, default KR">;
++def rewrite_style_EQ : Joined<["-"], "rewrite-style=">,
++  Alias<rewrite_style>;
+   
+ //===----------------------------------------------------------------------===//
+ // Language Options
+Index: include/clang/Parse/Parser.h
+===================================================================
+--- include/clang/Parse/Parser.h	(revision 201159)
++++ include/clang/Parse/Parser.h	(working copy)
+@@ -284,6 +284,23 @@
+     return PrevTokLocation;
+   }
+ 
++#define SCOUT_VECTORIZER_PARSER_PATCHED 1
++  /// ConsumeAnyToken - Dispatch to the right Consume* method based on the
++  /// current token type.  This should only be used in cases where the type of
++  /// the token really isn't known, e.g. in error recovery.
++  SourceLocation ConsumeAnyToken(bool ConsumeCodeCompletionTok = false) {
++    if (isTokenParen())
++      return ConsumeParen();
++    else if (isTokenBracket())
++      return ConsumeBracket();
++    else if (isTokenBrace())
++      return ConsumeBrace();
++    else if (isTokenStringLiteral())
++      return ConsumeStringToken();
++    else
++      return ConsumeToken(ConsumeCodeCompletionTok);
++  }
++
+ private:
+   //===--------------------------------------------------------------------===//
+   // Low-Level token peeking and consumption methods.
+@@ -312,22 +329,6 @@
+   /// For typos, give a fixit to '='
+   bool isTokenEqualOrEqualTypo();
+ 
+-  /// ConsumeAnyToken - Dispatch to the right Consume* method based on the
+-  /// current token type.  This should only be used in cases where the type of
+-  /// the token really isn't known, e.g. in error recovery.
+-  SourceLocation ConsumeAnyToken(bool ConsumeCodeCompletionTok = false) {
+-    if (isTokenParen())
+-      return ConsumeParen();
+-    else if (isTokenBracket())
+-      return ConsumeBracket();
+-    else if (isTokenBrace())
+-      return ConsumeBrace();
+-    else if (isTokenStringLiteral())
+-      return ConsumeStringToken();
+-    else
+-      return ConsumeToken(ConsumeCodeCompletionTok);
+-  }
+-
+   /// ConsumeParen - This consume method keeps the paren count up-to-date.
+   ///
+   SourceLocation ConsumeParen() {
+Index: lib/AST/DeclPrinter.cpp
+===================================================================
+--- lib/AST/DeclPrinter.cpp	(revision 201159)
++++ lib/AST/DeclPrinter.cpp	(working copy)
+@@ -36,6 +36,7 @@
+     void ProcessDeclGroup(SmallVectorImpl<Decl*>& Decls);
+ 
+     void Print(AccessSpecifier AS);
++    void PrintBracedDeclContext(DeclContext *DC);
+ 
+   public:
+     DeclPrinter(raw_ostream &Out, const PrintingPolicy &Policy,
+@@ -180,7 +181,7 @@
+ 
+ raw_ostream& DeclPrinter::Indent(unsigned Indentation) {
+   for (unsigned i = 0; i != Indentation; ++i)
+-    Out << "  ";
++    Out << ' ';
+   return Out;
+ }
+ 
+@@ -214,6 +215,19 @@
+   }
+ }
+ 
++void DeclPrinter::PrintBracedDeclContext(DeclContext *DC)
++{
++  if (Policy.LangOpts.getIndentStyle() == LangOptions::ANSIStyle) {
++    Out << "\n";
++    Indent() << "{\n";
++  }
++  else {
++    Out << " {\n";
++  }
++  VisitDeclContext(DC);
++  Indent() << "}";
++}
++
+ //----------------------------------------------------------------------------
+ // Common C declarations
+ //----------------------------------------------------------------------------
+@@ -223,7 +237,7 @@
+     return;
+ 
+   if (Indent)
+-    Indentation += Policy.Indentation;
++    Indentation += Policy.LangOpts.Indentation;
+ 
+   SmallVector<Decl*, 2> Decls;
+   for (DeclContext::decl_iterator D = DC->decls_begin(), DEnd = DC->decls_end();
+@@ -281,11 +295,11 @@
+     }
+ 
+     if (isa<AccessSpecDecl>(*D)) {
+-      Indentation -= Policy.Indentation;
++      Indentation -= Policy.LangOpts.Indentation;
+       this->Indent();
+       Print(D->getAccess());
+       Out << ":\n";
+-      Indentation += Policy.Indentation;
++      Indentation += Policy.LangOpts.Indentation;
+       continue;
+     }
+ 
+@@ -325,7 +339,7 @@
+     ProcessDeclGroup(Decls);
+ 
+   if (Indent)
+-    Indentation -= Policy.Indentation;
++    Indentation -= Policy.LangOpts.Indentation;
+ }
+ 
+ void DeclPrinter::VisitTranslationUnitDecl(TranslationUnitDecl *D) {
+@@ -365,9 +379,7 @@
+     Out << " : " << D->getIntegerType().stream(Policy);
+ 
+   if (D->isCompleteDefinition()) {
+-    Out << " {\n";
+-    VisitDeclContext(D);
+-    Indent() << "}";
++    PrintBracedDeclContext(D);
+   }
+   prettyPrintAttributes(D);
+ }
+@@ -380,9 +392,7 @@
+     Out << ' ' << *D;
+ 
+   if (D->isCompleteDefinition()) {
+-    Out << " {\n";
+-    VisitDeclContext(D);
+-    Indent() << "}";
++    PrintBracedDeclContext(D);
+   }
+ }
+ 
+@@ -575,15 +585,21 @@
+       // parameters.
+       Out << '\n';
+       DeclPrinter ParamPrinter(Out, SubPolicy, Indentation);
+-      Indentation += Policy.Indentation;
++      Indentation += Policy.LangOpts.Indentation;
+       for (unsigned i = 0, e = D->getNumParams(); i != e; ++i) {
+         Indent();
+         ParamPrinter.VisitParmVarDecl(D->getParamDecl(i));
+         Out << ";\n";
+       }
+-      Indentation -= Policy.Indentation;
+-    } else
++      Indentation -= Policy.LangOpts.Indentation;
++    }
++    else if (Policy.LangOpts.getIndentStyle() == LangOptions::ANSIStyle) {
++      Out << "\n";
++      Indent();
++    }
++    else {
+       Out << ' ';
++    }
+ 
+     D->getBody()->printPretty(Out, 0, SubPolicy, Indentation);
+     Out << '\n';
+@@ -781,9 +797,7 @@
+ 
+     // Print the class definition
+     // FIXME: Doesn't print access specifiers, e.g., "public:"
+-    Out << " {\n";
+-    VisitDeclContext(D);
+-    Indent() << "}";
++    PrintBracedDeclContext(D);
+   }
+ }
+ 
+@@ -959,13 +973,13 @@
+   
+   if (OID->ivar_size() > 0) {
+     Out << "{\n";
+-    Indentation += Policy.Indentation;
++    Indentation += Policy.LangOpts.Indentation;
+     for (ObjCImplementationDecl::ivar_iterator I = OID->ivar_begin(),
+          E = OID->ivar_end(); I != E; ++I) {
+       Indent() << I->getASTContext().getUnqualifiedObjCPointerType(I->getType()).
+                     getAsString(Policy) << ' ' << **I << ";\n";
+     }
+-    Indentation -= Policy.Indentation;
++    Indentation -= Policy.LangOpts.Indentation;
+     Out << "}\n";
+   }
+   VisitDeclContext(OID, false);
+Index: lib/AST/StmtPrinter.cpp
+===================================================================
+--- lib/AST/StmtPrinter.cpp	(revision 201159)
++++ lib/AST/StmtPrinter.cpp	(working copy)
+@@ -44,7 +44,7 @@
+       : OS(os), IndentLevel(Indentation), Helper(helper), Policy(Policy) {}
+ 
+     void PrintStmt(Stmt *S) {
+-      PrintStmt(S, Policy.Indentation);
++      PrintStmt(S, Policy.LangOpts.Indentation);
+     }
+ 
+     void PrintStmt(Stmt *S, int SubIndent) {
+@@ -70,6 +70,8 @@
+     void PrintCallArgs(CallExpr *E);
+     void PrintRawSEHExceptHandler(SEHExceptStmt *S);
+     void PrintRawSEHFinallyStmt(SEHFinallyStmt *S);
++    void PrintRawANSIStyleStmt(Stmt* Node, bool newLineAtStart = true);
++    bool PrintBody(Stmt* Node, bool intermediateStmt);
+ 
+     void PrintExpr(Expr *E) {
+       if (E)
+@@ -79,13 +81,14 @@
+     }
+ 
+     raw_ostream &Indent(int Delta = 0) {
+-      for (int i = 0, e = IndentLevel+Delta; i < e; ++i)
+-        OS << "  ";
++      for (int i = 0, e = IndentLevel+Delta*Policy.LangOpts.Indentation; 
++           i < e; ++i)
++        OS << " ";
+       return OS;
+     }
+ 
+     void Visit(Stmt* S) {
+-      if (Helper && Helper->handledStmt(S,OS))
++      if (Helper && Helper->handledStmt(S,OS, IndentLevel))
+           return;
+       else StmtVisitor<StmtPrinter>::Visit(S);
+     }
+@@ -109,6 +112,45 @@
+ //  Stmt printing methods.
+ //===----------------------------------------------------------------------===//
+ 
++void StmtPrinter::PrintRawANSIStyleStmt(Stmt* Node, bool newLineAtStart)
++{
++  assert(Policy.LangOpts.getIndentStyle() == LangOptions::ANSIStyle);
++  if (newLineAtStart)
++    OS << "\n";
++
++  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node)) {
++    if (Helper == 0 || !Helper->handledStmt(CS, OS, IndentLevel)) {
++      Indent();
++      PrintRawCompoundStmt(CS);
++      OS << "\n";
++    }
++  } else {
++    Indent() << "{\n";
++    PrintStmt(Node);
++    Indent() << "}\n";
++  }
++}
++
++/// Prints a 'body' stmt (as in for or switch - stmt's)
++/// return true, if eol was the last printed character
++bool StmtPrinter::PrintBody(Stmt* Node, bool intermediateStmt)
++{
++  if (Policy.LangOpts.getIndentStyle() == LangOptions::ANSIStyle) {
++    PrintRawANSIStyleStmt(Node);
++  } else if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node)) {
++    // Pretty print compoundstmt bodies (very common).
++    OS << " ";
++    PrintRawCompoundStmt(CS);
++    if (intermediateStmt) 
++      return false;
++    OS << "\n";
++  } else {
++    OS << "\n";
++    PrintStmt(Node);
++  }
++  return true;
++}
++
+ /// PrintRawCompoundStmt - Print a compound stmt without indenting the {, and
+ /// with no newline after the }.
+ void StmtPrinter::PrintRawCompoundStmt(CompoundStmt *Node) {
+@@ -195,31 +237,19 @@
+   else
+     PrintExpr(If->getCond());
+   OS << ')';
++  Stmt *Else = If->getElse();
++  bool lastCharEol = PrintBody(If->getThen(), Else != NULL);
++  if (Else != NULL) {
++    if (lastCharEol)
++      Indent() << "else";
++    else
++      OS << " else";
+ 
+-  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(If->getThen())) {
+-    OS << ' ';
+-    PrintRawCompoundStmt(CS);
+-    OS << (If->getElse() ? ' ' : '\n');
+-  } else {
+-    OS << '\n';
+-    PrintStmt(If->getThen());
+-    if (If->getElse()) Indent();
+-  }
+-
+-  if (Stmt *Else = If->getElse()) {
+-    OS << "else";
+-
+-    if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Else)) {
++    if (IfStmt *ElseIf = dyn_cast<IfStmt>(Else)) {
+       OS << ' ';
+-      PrintRawCompoundStmt(CS);
+-      OS << '\n';
+-    } else if (IfStmt *ElseIf = dyn_cast<IfStmt>(Else)) {
+-      OS << ' ';
+       PrintRawIfStmt(ElseIf);
+-    } else {
+-      OS << '\n';
+-      PrintStmt(If->getElse());
+-    }
++    } else 
++      PrintBody(Else, false);
+   }
+ }
+ 
+@@ -235,16 +265,7 @@
+   else
+     PrintExpr(Node->getCond());
+   OS << ")";
+-
+-  // Pretty print compoundstmt bodies (very common).
+-  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node->getBody())) {
+-    OS << " ";
+-    PrintRawCompoundStmt(CS);
+-    OS << "\n";
+-  } else {
+-    OS << "\n";
+-    PrintStmt(Node->getBody());
+-  }
++  PrintBody(Node->getBody(), false);
+ }
+ 
+ void StmtPrinter::VisitWhileStmt(WhileStmt *Node) {
+@@ -253,20 +274,16 @@
+     PrintRawDeclStmt(DS);
+   else
+     PrintExpr(Node->getCond());
+-  OS << ")\n";
+-  PrintStmt(Node->getBody());
++  OS << ")";
++  PrintBody(Node->getBody(), false);
+ }
+ 
+ void StmtPrinter::VisitDoStmt(DoStmt *Node) {
+-  Indent() << "do ";
+-  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node->getBody())) {
+-    PrintRawCompoundStmt(CS);
+-    OS << " ";
+-  } else {
+-    OS << "\n";
+-    PrintStmt(Node->getBody());
++  Indent() << "do";
++  if (PrintBody(Node->getBody(), true))
+     Indent();
+-  }
++  else
++    OS << ' ';
+ 
+   OS << "while (";
+   PrintExpr(Node->getCond());
+@@ -292,14 +309,7 @@
+     PrintExpr(Node->getInc());
+   }
+   OS << ") ";
+-
+-  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node->getBody())) {
+-    PrintRawCompoundStmt(CS);
+-    OS << "\n";
+-  } else {
+-    OS << "\n";
+-    PrintStmt(Node->getBody());
+-  }
++  PrintBody(Node->getBody(), false);
+ }
+ 
+ void StmtPrinter::VisitObjCForCollectionStmt(ObjCForCollectionStmt *Node) {
+@@ -311,14 +321,7 @@
+   OS << " in ";
+   PrintExpr(Node->getCollection());
+   OS << ") ";
+-
+-  if (CompoundStmt *CS = dyn_cast<CompoundStmt>(Node->getBody())) {
+-    PrintRawCompoundStmt(CS);
+-    OS << "\n";
+-  } else {
+-    OS << "\n";
+-    PrintStmt(Node->getBody());
+-  }
++  PrintBody(Node->getBody(), false);
+ }
+ 
+ void StmtPrinter::VisitCXXForRangeStmt(CXXForRangeStmt *Node) {
+Index: lib/Frontend/CompilerInvocation.cpp
+===================================================================
+--- lib/Frontend/CompilerInvocation.cpp	(revision 201159)
++++ lib/Frontend/CompilerInvocation.cpp	(working copy)
+@@ -1427,6 +1427,20 @@
+   case 2: Opts.setStackProtector(LangOptions::SSPReq); break;
+   }
+ 
++  // retrieve rewrite options:
++  Opts.Indentation = getLastArgIntValue(Args, OPT_rewrite_indent, 2, Diags);
++  if (const Arg *A = Args.getLastArg(OPT_rewrite_style)) {
++    unsigned IndentStyle = llvm::StringSwitch<unsigned>(A->getValue())
++      .Case("KR", LangOptions::KRStyle)
++      .Case("ANSI", LangOptions::ANSIStyle)
++      .Default(~0U);
++    if (IndentStyle == ~0U)
++      Diags.Report(diag::err_drv_invalid_value)
++        << A->getAsString(Args) << A->getValue();
++    else
++      Opts.setIndentStyle(LangOptions::IndentStyleMode(IndentStyle));
++  }
++
+   // Parse -fsanitize= arguments.
+   std::vector<std::string> Sanitizers = Args.getAllArgValues(OPT_fsanitize_EQ);
+   for (unsigned I = 0, N = Sanitizers.size(); I != N; ++I) {
+Index: lib/Parse/ParseAST.cpp
+===================================================================
+--- lib/Parse/ParseAST.cpp	(revision 201159)
++++ lib/Parse/ParseAST.cpp	(working copy)
+@@ -96,6 +96,8 @@
+   ParseAST(*S.get(), PrintStats, SkipFunctionBodies);
+ }
+ 
++Parser *globalHackedParser;
++
+ void clang::ParseAST(Sema &S, bool PrintStats, bool SkipFunctionBodies) {
+   // Collect global stats on Decls/Stmts (until we have a module streamer).
+   if (PrintStats) {
+@@ -112,6 +114,7 @@
+   OwningPtr<Parser> ParseOP(new Parser(S.getPreprocessor(), S,
+                                        SkipFunctionBodies));
+   Parser &P = *ParseOP.get();
++  globalHackedParser = &P;
+ 
+   PrettyStackTraceParserEntry CrashInfo(P);
+ 

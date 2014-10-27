@@ -1,0 +1,7 @@
+#! /bin/sh
+# this file exists solely to make the llvm make system happy :
+
+echo "#! /bin/sh" >config.status
+echo "exit 0" >>config.status
+chmod +x config.status 
+exit 0

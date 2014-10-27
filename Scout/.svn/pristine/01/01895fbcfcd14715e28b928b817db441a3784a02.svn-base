@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <version>1</version>
+    <last_loaded_file>C:/Users/Olaf Krzikalla/Projekte/SVN/Scout_Show/tests/preprocess_regression.c</last_loaded_file>
+    <commandline></commandline>
+    <prologtextfile></prologtextfile>
+    <include_paths>
+        <count>1</count>
+        <item>C:/Users/Olaf Krzikalla/Projekte/SVN/Scout_Show/tests</item>
+    </include_paths>
+    <preprocessed_files>
+        <count>2</count>
+        <item>C:/Users/Olaf Krzikalla/Projekte/SVN/Scout_Show/tests/preprocessor_test.c</item>
+        <item>C:/Users/Olaf Krzikalla/Projekte/SVN/Scout_Show/tests/preprocess_regression.c</item>
+    </preprocessed_files>
+</project>

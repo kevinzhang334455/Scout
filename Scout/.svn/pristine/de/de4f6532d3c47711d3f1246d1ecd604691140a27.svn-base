@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient7983"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#da7f7f;stop-opacity:1;"
+         offset="0"
+         id="stop7985" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7973"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#da7f7f;stop-opacity:1;"
+         offset="0"
+         id="stop7975" />
+      <stop
+         style="stop-color:#da7f7f;stop-opacity:0;"
+         offset="1"
+         id="stop7977" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6231"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop6233" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6213"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop6215" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop6217" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6231"
+       id="linearGradient6235"
+       x1="291.28984"
+       y1="588.07647"
+       x2="348.57143"
+       y2="588.07647"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter8001"
+       x="-0.28534548"
+       width="1.570691"
+       y="-0.057477032"
+       height="1.1149541">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.1365833"
+         id="feGaussianBlur8003" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter8121"
+       x="-0.24134104"
+       width="1.4826821"
+       y="-0.059916766"
+       height="1.1198335">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.1968391"
+         id="feGaussianBlur8123" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.313709"
+     inkscape:cx="208"
+     inkscape:cy="869.52402"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1148"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-grids="true"
+     inkscape:object-paths="false"
+     inkscape:object-nodes="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid6459" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.15216954;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3024"
+       sodipodi:cx="230"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="20"
+       sodipodi:ry="20"
+       d="m 212.67949,202.36218 a 20,20 0 0 1 0,-20"
+       sodipodi:start="2.6179939"
+       sodipodi:end="3.6651914"
+       transform="matrix(1.9433762,0,0,2.0000009,-206.97653,-192.36235)"
+       sodipodi:open="true"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.03750003;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3826"
+       sodipodi:cx="235"
+       sodipodi:cy="182.36218"
+       sodipodi:rx="5"
+       sodipodi:ry="5"
+       d="m 230.01903,182.79796 a 5,5 0 0 1 0,-0.87156"
+       transform="matrix(7.9999936,0,0,7.9999936,-1639.7985,-1266.5341)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.10975613;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3834"
+       sodipodi:cx="245"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 230.05708,193.66952 a 15,15 0 0 1 0,-2.61467"
+       transform="matrix(2.7333326,0,0,2.7333326,-429.4665,-333.42762)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.26626452000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-linecap:round;stroke-linejoin:round"
+       id="path3852"
+       sodipodi:cx="237.5"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="32.5"
+       sodipodi:ry="35"
+       d="m 205.12367,195.41263 a 32.5,35 0 0 1 0,-6.1009"
+       transform="matrix(1.169231,0,0,1.0857144,-37.692348,-16.488217)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3854"
+       sodipodi:cx="240"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="37"
+       sodipodi:ry="37"
+       d="m 203.1408,195.58694 a 37,37 0 0 1 0,-6.44952"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 203.1408,189.13742 -0.99619,-0.0872"
+       id="path3862"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 202.14461,195.67409 0.99619,-0.0872"
+       id="path3864"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.30000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 199.35602,195.93559 0.99621,-0.0872"
+       id="path3866"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:#27bb3b;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 199.35602,188.78882 0.99621,0.0872"
+       id="path3868"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.00152705;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 199.40683,195.85227 c -1e-5,-0.0105 -0.0135,-0.19432 -0.03,-0.40849 -0.13069,-1.69476 -0.15003,-3.64036 -0.0533,-5.35996 0.0205,-0.36402 0.0826,-1.227 0.0886,-1.23079 0.003,-0.002 0.87222,0.0736 0.87581,0.0764 0.002,0.001 -0.0101,0.17049 -0.0262,0.37601 -0.15348,1.96211 -0.15363,4.1754 -4e-4,6.1073 0.0163,0.20552 0.0275,0.37583 0.0249,0.37846 -0.004,0.004 -0.82841,0.0801 -0.8672,0.0801 -0.007,0 -0.0121,-0.009 -0.0121,-0.0191 l 0,0 z"
+       id="path3870"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.00152705;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 202.19989,195.57815 c 0,-0.0197 -0.0104,-0.16277 -0.0231,-0.31796 -0.0442,-0.54013 -0.0826,-1.34266 -0.10114,-2.11207 -0.0276,-1.14441 0.012,-2.58076 0.10119,-3.67477 0.0127,-0.15519 0.023,-0.29955 0.023,-0.3208 l 0,-0.0386 0.43931,0.0372 0.43931,0.0372 -0.026,0.33704 c -0.0713,0.92421 -0.10416,1.82039 -0.10416,2.8414 0,1.02119 0.0323,1.89686 0.10432,2.82887 0.0144,0.18687 0.0215,0.33977 0.0156,0.33977 -0.0206,0 -0.70906,0.0608 -0.78823,0.0696 -0.0765,0.009 -0.0802,0.007 -0.0802,-0.0269 l 0,0 z"
+       id="path3872"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.29999999999999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 208,172.36218 0,40"
+       id="path3874"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <rect
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.17740482;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3876"
+       width="0.9225952"
+       height="6.8225951"
+       x="206.28871"
+       y="188.95088"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <rect
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.17740482;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3878"
+       width="0.9225952"
+       height="6.8225951"
+       x="208.78871"
+       y="188.95088"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.15216954;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3024-5"
+       sodipodi:cx="230"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="20"
+       sodipodi:ry="20"
+       d="m 212.67949,202.36218 a 20,20 0 0 1 0,-20"
+       sodipodi:start="2.6179939"
+       sodipodi:end="3.6651914"
+       transform="matrix(-1.9434467,0,0,2.0000007,623.09226,-192.36233)"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.03750003;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3826-4"
+       sodipodi:cx="235"
+       sodipodi:cy="182.36218"
+       sodipodi:rx="5"
+       sodipodi:ry="5"
+       d="m 230.01903,182.79796 a 5,5 0 0 1 0,-0.87156"
+       transform="matrix(-8.000284,0,0,7.9999927,2055.9661,-1266.5339)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.10975613;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3834-9"
+       sodipodi:cx="245"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 230.05708,193.66952 a 15,15 0 0 1 0,-2.61467"
+       transform="matrix(-2.7334318,0,0,2.7333323,845.59026,-333.42759)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.26626453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3852-6"
+       sodipodi:cx="237.5"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="32.5"
+       sodipodi:ry="35"
+       d="m 205.12367,195.41263 a 32.5,35 0 0 1 0,-6.1009"
+       transform="matrix(-1.1692734,0,0,1.0857143,453.80186,-16.488201)"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       transform="matrix(-1.0000363,0,0,0.99999989,416.10816,1.4977954e-5)"
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:0.30000001;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3854-5"
+       sodipodi:cx="240"
+       sodipodi:cy="192.36218"
+       sodipodi:rx="37"
+       sodipodi:ry="37"
+       d="m 203.1408,195.58694 a 37,37 0 0 1 0,-6.44952"
+       sodipodi:start="3.0543262"
+       sodipodi:end="3.2288591"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.30000544;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 212.95996,189.1374 0.9963,-0.0872"
+       id="path3862-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.30000544;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 213.95626,195.67407 -0.9963,-0.0872"
+       id="path3864-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.30000544;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 216.74496,195.93557 -0.9963,-0.0872"
+       id="path3866-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="color:#000000;fill:#27bb3b;fill-opacity:1;stroke:#000000;stroke-width:0.30000544;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 216.74496,188.7888 -0.9963,0.0872"
+       id="path3868-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.00152708;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 216.69406,195.85225 c 0,-0.0105 0.014,-0.19432 0.03,-0.40849 0.1307,-1.69476 0.1501,-3.64036 0.053,-5.35996 -0.021,-0.36402 -0.083,-1.227 -0.089,-1.23079 0,-0.002 -0.8722,0.0736 -0.8758,0.0764 0,0.001 0.01,0.17049 0.026,0.37601 0.1535,1.96211 0.1536,4.1754 4e-4,6.1073 -0.016,0.20552 -0.027,0.37583 -0.025,0.37846 0,0.004 0.8284,0.0801 0.8672,0.0801 0.01,0 0.012,-0.009 0.012,-0.0191 l 0,0 z"
+       id="path3870-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+    <path
+       style="fill:#27bb3b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.00152708;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 213.90096,195.57813 c 0,-0.0197 0.01,-0.16277 0.023,-0.31796 0.044,-0.54013 0.083,-1.34266 0.1011,-2.11207 0.028,-1.14441 -0.012,-2.58076 -0.1012,-3.67477 -0.013,-0.15519 -0.023,-0.29955 -0.023,-0.3208 l 0,-0.0386 -0.4393,0.0372 -0.4393,0.0372 0.026,0.33704 c 0.071,0.92421 0.1041,1.82039 0.1041,2.8414 0,1.02119 -0.032,1.89686 -0.1043,2.82887 -0.014,0.18687 -0.022,0.33977 -0.016,0.33977 0.021,0 0.7091,0.0608 0.7883,0.0696 0.076,0.009 0.08,0.007 0.08,-0.0269 l 0,0 z"
+       id="path3872-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Olaf Krzikalla\Projekte\SVN\Scout_Show\docs\path3024.png"
+       inkscape:export-xdpi="249.8"
+       inkscape:export-ydpi="249.8" />
+  </g>
+</svg>
